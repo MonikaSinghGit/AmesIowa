@@ -131,55 +131,55 @@ def bok_fig(w=940, h=700, box_select=False):
 #         data = pd.read_csv(filepath+'/assets/pickle_base.csv', index_col='PID')
 #     return data
 
-# map_data = load_data('map_data')
-# house_data = load_data('house_data')
-# pkl_data = load_data('pickle_data')
-# page_3_data = load_data('page_3_data')
+map_data = load_data('map_data')
+house_data = load_data('house_data')
+pkl_data = load_data('pickle_data')
+page_3_data = load_data('page_3_data')
 
-# def plot_stacked(s_data, overlay=None, m_data=map_data):
-#     sec_order=['NW','SO','WE','SE','NO','DT']
-#     fig, ax1 = plt.subplots()
-#     s_data.loc[:,sec_order].T.plot(ax=ax1, kind='bar', rot=0, width=0.8,
-#                             stacked=True, figsize=(10,6)).legend(bbox_to_anchor=(1.051, 1.0))
-#     ax1.set_ylabel('Proportion')
-#     ax2 = ax1.twinx()
-#     sns.stripplot(ax=ax2, x='Sector', y=overlay, data=m_data, order=sec_order, color='0.6', edgecolor='k', linewidth=0.5)
-#     return fig
+def plot_stacked(s_data, overlay=None, m_data=map_data):
+    sec_order=['NW','SO','WE','SE','NO','DT']
+    fig, ax1 = plt.subplots()
+    s_data.loc[:,sec_order].T.plot(ax=ax1, kind='bar', rot=0, width=0.8,
+                            stacked=True, figsize=(10,6)).legend(bbox_to_anchor=(1.051, 1.0))
+    ax1.set_ylabel('Proportion')
+    ax2 = ax1.twinx()
+    sns.stripplot(ax=ax2, x='Sector', y=overlay, data=m_data, order=sec_order, color='0.6', edgecolor='k', linewidth=0.5)
+    return fig
 
-# # ========Modeling Functions===================================================
+# ========Modeling Functions===================================================
 # pkl_model = pickle.load(open(filepath+'/assets/APP_model_CBR.pkl', 'rb'))
 
-# def num_format(num):
-#     # converts any int/float to human readable string with thousandth commas
-#     new_num = ''
-#     for idx, c in enumerate(str(np.int64(num))[::-1]):
-#         if (idx+1)%4 == 0:
-#             new_num += ','
-#         new_num += c
-#     return new_num[::-1]
+def num_format(num):
+    # converts any int/float to human readable string with thousandth commas
+    new_num = ''
+    for idx, c in enumerate(str(np.int64(num))[::-1]):
+        if (idx+1)%4 == 0:
+            new_num += ','
+        new_num += c
+    return new_num[::-1]
 
-# def pkl_dum_encode(base_data, code, feat):
-#     # Encodes the feature selected with '1', all other dummy columns are set to '0'
-#     reg_text = '^'+feat
-#     target = feat+code
-#     feat_cols = list(base_data.filter(regex=reg_text).columns)
-#     base_data.loc[0,feat_cols] = 0
-#     if target in feat_cols:
-#         feat_cols.remove(target)
-#         base_data.loc[0,target] = 1
-#     return base_data
+def pkl_dum_encode(base_data, code, feat):
+    # Encodes the feature selected with '1', all other dummy columns are set to '0'
+    reg_text = '^'+feat
+    target = feat+code
+    feat_cols = list(base_data.filter(regex=reg_text).columns)
+    base_data.loc[0,feat_cols] = 0
+    if target in feat_cols:
+        feat_cols.remove(target)
+        base_data.loc[0,target] = 1
+    return base_data
 
-# basehouse_PIN = 535454150
-# basehouse_medians = house_data.groupby(['Neighborhood','MSSubClass']).agg('median')
+basehouse_PIN = 535454150
+basehouse_medians = house_data.groupby(['Neighborhood','MSSubClass']).agg('median')
 
-# # =============================================================================
+# =============================================================================
 
-# #=======================================================================================================
-# # Navigation
+#=======================================================================================================
+# Navigation
 # st.sidebar.image(filepath+'/assets/App_Logo.jpg', use_column_width=True) 
 # page = st.sidebar.radio("Navigation", ["Map of Ames", "City Sectors", "House Features", "Renovation Model", "Collaborators"]) 
 
-# #=======================================================================================================
+#=======================================================================================================
 # # Sidebar House Selector
 # with st.sidebar.container():
 #     st.sidebar.title('Model House')
