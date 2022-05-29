@@ -6,3 +6,8 @@ data/_ames_.csv
 StreamLit_Website/Pipfile
 StreamLit_Website/AmesIowa_Req_CSV_Files.pdf
 .DS_Store
+.DS_Store
+StreamLit_Website/.ipynb_checkpoints/Ames_map-checkpoint.py
+StreamLit_Website/.ipynb_checkpoints/Untitled-checkpoint.ipynb
+NYCDSA_ML_1_Website/
+.DS_Store

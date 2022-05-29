@@ -1,9 +1,11 @@
+import os
+import streamlit as st
+
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-%matplotlib inline 
+
 import plotly
-import plotly.express as px
+
 import plotly.graph_objects as go
 
 '''loading data'''
@@ -462,4 +464,5 @@ fig.update_layout(
     ]
 ))
 
-fig.show()
+# Plot!
+st.plotly_chart(fig, use_container_width=True)
