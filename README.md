@@ -5,3 +5,6 @@ This is the repository for the exploratory data analysis and machine learning st
 
 The full repository of the project website can be found here:
 https://github.com/jchatterjee/nycdsa_ml_project_website
+
+The fully functioning website can be found here:
+https://share.streamlit.io/jchatterjee/nycdsa_ml_project_website/main/trialapp.py
