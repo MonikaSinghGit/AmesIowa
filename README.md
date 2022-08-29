@@ -44,6 +44,7 @@ During our analysis of the linear model and tree-based model, we observed that f
 To achieve that, we will first need to create a prediction model that will predict which model will perform better for this particular house. Then we use that model to predict the sales price.
 
 
+![predictiveModel](https://user-images.githubusercontent.com/71456314/187187742-0ac225ab-2a08-49f0-9290-1274b8034e5c.jpg)
 
 
 
@@ -54,11 +55,15 @@ Our approach works in the following two phases:
 
  1. Predict the best prediction model: The aim of this phase is to build a classification model that can predict among linear and tree-based models which will perform the best for an input house. For the linear model, we are using Elastic net, as it is the best among linear models, and random forest as tree based model. To build the classification model, we first need to generate a labeled dataset where we label each observation with the best prediction model. <br>
   a. In order to find the best model, we compute the house price of each observation in the dataset using both linear and random forest models. Then we compare the result of each model with the actual price and create a new column labeled with the most accurate model. For example, the table shown in the figure below shows each observation in the test dataset. The last three columns represent the result by the linear model, result by random forest, and best model, respectively. ‘LM’ and ‘RF’ in the last column Best Model indicates that between the linear model and random forest, which model has the most accurate prediction, where LM indicated the linear model and RF indicated random forest.<br>
+  ![hybridmodel2](https://user-images.githubusercontent.com/71456314/187187776-e3730e33-c509-4fb2-8b2a-25b62c508b7d.jpg)
+
   b. Once we have the labeled dataset, we train a classifier to predict the best model for sales price prediction. We tested SVM, logistic regression, and random forest model and found the random forest classifier to be the most accurate. Therefore we use a random forest classifier to predict the best model between the ‘linear model’ and random forest to predict the sales price for a particular house.
 
 		
  
  2. Use the resultant model to predict sales price: Once we have the best prediction model, we use that model to predict the sales price of that particular house. For each new house step, 1 to 2 is repeated. The figure below showcases the process.
+
+![hybridmodel](https://user-images.githubusercontent.com/71456314/187187035-e99a16c1-925f-4d84-8302-57bc0c0029df.jpg)
 
 
 Each model pursues the following steps:
@@ -75,6 +80,7 @@ The table below shows the result obtained by each model. As we can see Elastic n
 	According to our assumption, if we are able to predict the correct best prediction model for each house in the test dataset, we will achieve over 95% accuracy. However, our best classifier (random forest) had only a 0.77 R-squared value. That is why we do not see a huge improvement in the results of the hybrid model. By improving the performance of the classifier, we will certainly be able to improve the results of the hybrid model. This is one of our future works that we will explore later.
 
 
+![result](https://user-images.githubusercontent.com/71456314/187187601-a1516b5b-f75a-4a32-93a9-d6d56e2d8f9a.jpg)
 
 
 The full repository of the project website can be found here:
